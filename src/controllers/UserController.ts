@@ -1,4 +1,4 @@
-import { UserModel } from "bd/users";
+import { UserModel } from "../bd/users";
 
 export const getUsers = () => UserModel.find();
 
@@ -14,7 +14,7 @@ export const getUserBySessionToken = (sessionToken: String) =>
 
 export const getUserById = (id: String) => UserModel.findById(id);
 
-export const creatUser = (values: Record<string, any>) =>
+export const createUser = (values: Record<string, any>) =>
 	new UserModel(values).save().then((user) => user.toObject());
 
 export const deleteUserById = (id: String) =>
