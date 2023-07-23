@@ -6,7 +6,9 @@ import { random, authentication } from "../helpers";
 export const register = async (req: express.Request, res: express.Response) => {
 	try {
 		const { email, password, username } = req.body;
-// try and make the responses to json
+
+		// todo: try and make the responses to json
+
 		if (!email || !password || !username) {
 			return res.status(400).send("Re-check the registration inputs");
 		}
