@@ -7,16 +7,16 @@ export const register = async (req: express.Request, res: express.Response) => {
 	try {
 		const { email, password, username } = req.body;
 
-		// todo: try and make the responses to json
-
 		if (!email || !password || !username) {
-			return res.status(400).send("Re-check the registration inputs");
+			return res
+				.status(400)
+				.json({ message: "Re-check the registration inputs" });
 		}
 
 		const existingUser = await getUserByEmail(email);
 
 		if (existingUser) {
-			return res.status(400).send("User already exists");
+			return res.status(400).json({ message: "User already exists" });
 		}
 
 		const salt = random();
