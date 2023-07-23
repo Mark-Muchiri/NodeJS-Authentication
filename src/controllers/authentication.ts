@@ -8,7 +8,7 @@ export const register = async (req: express.Request, res: express.Response) => {
 		const { email, password, username } = req.body;
 
 		if (!email || !password || !username) {
-			return res.status(400).send("Recheck the registration inputs");
+			return res.status(400).send("Re-check the registration inputs");
 		}
 
 		const existingUser = await getUserByEmail(email);
