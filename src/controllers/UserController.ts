@@ -22,4 +22,3 @@ export const deleteUserById = (id: String) =>
 
 export const updateUserById = (id: String, values: Record<string, any>) =>
 	UserModel.findByIdAndUpdate(id, values);
-

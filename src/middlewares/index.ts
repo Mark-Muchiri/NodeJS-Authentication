@@ -2,11 +2,7 @@ import express from "express";
 import { get, merge } from "lodash";
 import { getUserBySessionToken } from "../controllers/UserController";
 
-export const isAuthenticated = async (
-	req: express.Request,
-	res: express.Response,
-	next: express.NextFunction
-) => {
+export const isAuthenticated = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
 	try {
 		const sessionToken = req.cookies["MARK-AUTH"];
 
@@ -18,9 +14,7 @@ export const isAuthenticated = async (
 		const existingUser = await getUserBySessionToken(sessionToken);
 
 		if (!existingUser) {
-			return res
-				.sendStatus(403)
-				.json({ message: "there's an existing user already" });
+			return res.sendStatus(403).json({ message: "there's an existing user already" });
 		}
 
 		merge(req, { identity: existingUser });
@@ -28,6 +22,6 @@ export const isAuthenticated = async (
 		return next();
 	} catch (error) {
 		console.error(error);
-		return res.sendStatus(403);
+		return res.sendStatus(400);
 	}
 };
